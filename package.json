@@ -1,6 +1,6 @@
 {
   "name": "mobi-vue-trip-option-card",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "types": "./dist/index.d.ts",
   "main": "./dist/mobi-vue-trip-option-card.umd.min.js",
   "files": [
