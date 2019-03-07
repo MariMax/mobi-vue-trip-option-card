@@ -1,13 +1,14 @@
 <template>
   <div class="section" ref="container">
-    <div class="trace" :id="id" ref="trace"></div>
-    <label :for="id" class="trace-label" ref="label">
-      {{label}}</label>
+    <div class="trace" :id="id" ref="trace">
+      <component :is="icon" class="icon" ref="icon"></component>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import {Component, Prop, Vue, Emit} from 'vue-property-decorator';
+import VueObject, { VueConstructor } from 'vue';
 
 let uniqueId = 0;
 
@@ -15,12 +16,9 @@ let uniqueId = 0;
 export default class SectionComponent extends Vue {
   public $refs!: {
     container: HTMLDivElement;
-    label: HTMLLabelElement;
     trace: HTMLDivElement;
+    icon: VueObject;
   };
-
-  @Prop({default: ' '})
-  public label!: string;
 
   @Prop({default: 'gray'})
   public color!: string;
@@ -28,9 +26,12 @@ export default class SectionComponent extends Vue {
   @Prop({default: 10})
   public width!: number;
 
+  @Prop({default: null, required: true})
+  public icon!: VueConstructor<Vue>;
+
   @Prop({
     default() {
-      return `trip-detils-trace-${uniqueId++}`;
+      return `trip-option-detils-trace-${uniqueId++}`;
     },
   })
   public id!: string;
@@ -42,15 +43,22 @@ export default class SectionComponent extends Vue {
     this.updateLabel();
   }
 
-  private updateLabel() {
+  private updateLabel(): void {
     const availableWidth = this.width;
-    if (availableWidth >= 0 && availableWidth < this.$refs.label.offsetWidth) {
-      this.$refs.label.style.opacity = '0';
+    if (!this.$refs.icon) {
+      return;
+    }
+    const icon = this.$refs.icon.$el as HTMLDivElement;
+    if (availableWidth >= 0 && availableWidth < icon.offsetWidth) {
+      icon.style.opacity = '0';
     }
     this.$refs.trace.style.backgroundColor = this.color;
     this.$refs.trace.style.width = `${this.width}px`;
-    const halfLabel = this.$refs.label.offsetWidth / 2;
-    this.$refs.label.style.transform = `translateX(${(this.width / 2) - halfLabel}px)`;
+    const halfLabel = icon.clientWidth / 2;
+    icon.style.transform = `translateX(${(this.width / 2) - halfLabel}px)`;
+    if (this.width < halfLabel * 2) {
+      icon.style.opacity = '0';
+    }
   }
 }
 </script>
@@ -67,16 +75,15 @@ export default class SectionComponent extends Vue {
   height: 1em;
 }
 
-.trace-label {
+.icon {
   display: block;
   text-align: center;
-  color: var(--black-50);
-  font-size: 11px;
-  font-weight: 600;
+  color: var(--white);
+  font-size: .75em;
   position: absolute;
-  bottom: -1.5em;
   will-change: transform;
   left: 0;
+  top: .2em;
   margin-bottom: 0
 }
 </style>
