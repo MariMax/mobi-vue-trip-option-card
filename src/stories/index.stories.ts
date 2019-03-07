@@ -23,32 +23,29 @@ storiesOf('Section', module).add('demo', () => ({
   // methods: {action: action('clicked')},
 }));
 storiesOf('Details', module).add('demo', () => ({
-  components: {TripOptionDetailsComponent},
+  components: {TripOptionDetailsComponent, IconBike},
   template: `
     <div class="demo">
-      <TripDetailsComponent start="test-start" end="test-end" :sections="sections"/>
+      <TripOptionDetailsComponent start="test-start" end="test-end" :sections="sections"/>
     </div>
     `,
   // methods: {action: action('clicked')},
   data: () => {
     return {
       sections: [{
-        label: 'test 1',
         color: 'red',
         length: 30,
-        offsetLabel: 'text-offset',
+        icon: IconBike,
       },
       {
-        label: 'test 2',
         color: 'blue',
         length: 50,
-        offsetLabel: 'text-offset',
+        icon: IconBike,
       },
       {
-        label: 'test 3',
         color: 'yellow',
         length: 20,
-        offsetLabel: '',
+        icon: IconBike,
       },
     ],
     };

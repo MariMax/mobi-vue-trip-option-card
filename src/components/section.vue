@@ -26,7 +26,7 @@ export default class SectionComponent extends Vue {
   @Prop({default: 10})
   public width!: number;
 
-  @Prop({default: null, required: true})
+  @Prop({default: null})
   public icon!: VueConstructor<Vue>;
 
   @Prop({
@@ -45,6 +45,8 @@ export default class SectionComponent extends Vue {
 
   private updateLabel(): void {
     const availableWidth = this.width;
+    this.$refs.trace.style.width = `${this.width}px`;
+    this.$refs.trace.style.backgroundColor = this.color;
     if (!this.$refs.icon) {
       return;
     }
@@ -52,8 +54,6 @@ export default class SectionComponent extends Vue {
     if (availableWidth >= 0 && availableWidth < icon.offsetWidth) {
       icon.style.opacity = '0';
     }
-    this.$refs.trace.style.backgroundColor = this.color;
-    this.$refs.trace.style.width = `${this.width}px`;
     const halfLabel = icon.clientWidth / 2;
     icon.style.transform = `translateX(${(this.width / 2) - halfLabel}px)`;
     if (this.width < halfLabel * 2) {
