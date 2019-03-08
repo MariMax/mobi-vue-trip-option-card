@@ -78,6 +78,6 @@
     "testURL": "http://localhost/"
   },
   "dependencies": {
-    "mobi-vue-icons": "^0.1.2"
+    "mobi-vue-icons": "^0.1.3"
   }
 }

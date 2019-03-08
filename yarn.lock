@@ -7758,10 +7758,10 @@ mkdirp@0.5.x, mkdirp@0.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp
   dependencies:
     minimist "0.0.8"
 
-mobi-vue-icons@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/mobi-vue-icons/-/mobi-vue-icons-0.1.2.tgz#8b8497479c4624b67995bb74ad67916b46d2b36d"
-  integrity sha512-OegSCNSaxfDsAm2xMFrq08osnJKqLVmoXYIbC4KsVBUPBWoE7tVB1yn7Xk6AU/GsfouKkz5GJBEqQ2CibOcQOA==
+mobi-vue-icons@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/mobi-vue-icons/-/mobi-vue-icons-0.1.3.tgz#fa72067a43e95f26c8acd24e807ad73db2a89a10"
+  integrity sha512-MwgGsSHcZ51f8VundvVQy1Q3lq3HuPY6+Oe/Eb/Y8P8R45/ZMnMd/S+sp+vJh76r1rhpUWWY0mAyfdfANOVMlg==
   dependencies:
     circular-std "^1.0.0"
 

@@ -47,14 +47,6 @@ export default class TripOptionDetailsComponent extends Vue {
   @Prop({default: 'gray'})
   public gapColor!: string;
 
-  @Prop({default: 0})
-  public maxWidth!: number;
-
-  @Prop({default() {
-    return Math.random();
-  }})
-  public updateTrigger!: number;
-
   @Prop({
     default() {
       return `trip-option-detils-${uniqueId++}`;
@@ -84,7 +76,7 @@ export default class TripOptionDetailsComponent extends Vue {
     if (!this.isReady) {
       return this.internalSections;
     }
-    const maxWidth = this.maxWidth || this.$refs.container.offsetWidth;
+    const maxWidth = this.$refs.container.offsetWidth;
     if (this.internalHash === maxWidth) {
       return this.internalSections;
     }
