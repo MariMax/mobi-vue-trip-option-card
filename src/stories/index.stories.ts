@@ -2,8 +2,35 @@
 import {storiesOf} from '@storybook/vue';
 
 import SectionComponent from '../components/section.vue';
-import {TripOptionDetailsComponent, TripOptionDetailsCardComponent} from '../index';
+import {TripOptionDetailsComponent, TripOptionDetailsCardComponent, TripOptionDetailsListComponent} from '../index';
 import {IconBike} from 'mobi-vue-icons';
+
+const option = {
+  sections: [
+    {
+      color: 'red',
+      length: 30,
+      icon: IconBike,
+    },
+    {
+      color: 'blue',
+      length: 50,
+      icon: IconBike,
+    },
+    {
+      color: 'yellow',
+      length: 20,
+      icon: IconBike,
+    },
+  ],
+  gapLength: 10,
+  gapColor: 'gray',
+  departure: '10:00 AM',
+  arrival: '10:30 PM',
+  caption: 'Best ($23, 19 miles, 32 mins)',
+  positives: ['Accessible, Ferry, Fast, Time to Read, All Real Time'],
+  negatives: ['8 transfers, Likely Late, Not Free, Get Wet'],
+};
 
 storiesOf('Section', module).add('demo', () => ({
   components: {SectionComponent, IconBike},
@@ -61,32 +88,21 @@ storiesOf('TripOptionDetailsCard', module).add('demo', () => ({
   // methods: {action: action('clicked')},
   data: () => {
     return {
-      data: {
-        sections: [
-          {
-            color: 'red',
-            length: 30,
-            icon: IconBike,
-          },
-          {
-            color: 'blue',
-            length: 50,
-            icon: IconBike,
-          },
-          {
-            color: 'yellow',
-            length: 20,
-            icon: IconBike,
-          },
-        ],
-        gapLength: 10,
-        gapColor: 'gray',
-        departure: '10:00 AM',
-        arrival: '10:30 PM',
-        caption: 'Best ($23, 19 miles, 32 mins)',
-        positives: ['Accessible, Ferry, Fast, Time to Read, All Real Time'],
-        negatives: ['8 transfers, Likely Late, Not Free, Get Wet'],
-      },
+      data: option,
+    };
+  },
+}));
+storiesOf('TripOptionDetailsList', module).add('demo', () => ({
+  components: {TripOptionDetailsListComponent},
+  template: `
+    <div class="demo">
+      <TripOptionDetailsListComponent :data="data"/>
+    </div>
+    `,
+  // methods: {action: action('clicked')},
+  data: () => {
+    return {
+      data: [option, option, option],
     };
   },
 }));
