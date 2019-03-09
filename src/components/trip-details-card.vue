@@ -3,19 +3,19 @@
     <TripOptionDetailsComponent :sections="tripSections" :gap="gapLength" :gapColor="gapColor"/>
     <section class="content">
       <div class="arrival-departure">
-        <span class="label">Depart</span>
+        <span class="label">Depart </span>
         <span class="value">{{departureTime}},</span>
-        <span class="label">Arrive</span>
+        <span class="label">Arrive </span>
         <span class="value">{{arrivalTime}}</span>
       </div>
 
       <div class="caption">{{caption}}</div>
-      <div class="positives" v-for="(p, index) in positiveThings" :key="'positive' + index">
-        <IconCheck/>
+      <div class="reasons" v-for="(p, index) in positiveThings" :key="'positive' + index">
+        <IconCheck class="icon icon-positive"/>
         {{p}}
       </div>
-      <div class="negatives" v-for="(n, index) in negativeThings" :key="'negative' + index">
-        <IconCross/>
+      <div class="reasons" v-for="(n, index) in negativeThings" :key="'negative' + index">
+        <IconCross class="icon icon-negative"/>
         {{n}}
       </div>
     </section>
@@ -109,6 +109,42 @@ export default class TripOptionDetailsCardComponent extends Vue {
 .horizontal-container {
   width: 100%;
   overflow: hidden;
-  padding: 1em;
 }
+
+.content {
+  margin: .5em 1em;
+}
+
+.label, .value {
+  color: var(--black-50);
+  font-size: .7em;
+}
+
+.value {
+  font-weight: bold;
+}
+
+.caption {
+  font-weight: bold;
+  font-size: 1.1em;
+
+}
+
+.reasons {
+  display: flex;
+  align-items: center;
+  font-size: .7em;
+}
+
+.icon {
+  margin-right: .5em;
+
+  &-positive {
+    color: var(--positive, green);
+  }
+  &-negative {
+    color: var(--positive, red);
+  }
+}
+
 </style>

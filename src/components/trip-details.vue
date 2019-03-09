@@ -121,7 +121,7 @@ export default class TripOptionDetailsComponent extends Vue {
 .horizontal-container {
   width: 100%;
   overflow: hidden;
-  padding: 1em;
+  line-height: 0
 }
 
 .horizontal-container-inner {
