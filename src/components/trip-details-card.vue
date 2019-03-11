@@ -4,7 +4,7 @@
     <section class="content">
       <div class="arrival-departure">
         <span class="label">Depart </span>
-        <span class="value">{{departureTime}},</span>
+        <span class="value">{{departureTime}}, </span>
         <span class="label">Arrive </span>
         <span class="value">{{arrivalTime}}</span>
       </div>
