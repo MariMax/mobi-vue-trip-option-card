@@ -89,13 +89,13 @@ export default class TripOptionDetailsComponent extends Vue {
       const section: IExDetailsSection = {
         ...i,
         length: sectionLength,
-        id: `${ind}-${fullWidth}`,
+        id: `${ind}-${fullWidth}-${i.color}-${i.length}`,
         offset: offset - sectionLength,
       };
       const gap: IExDetailsSection = {
         color: this.gapColor,
         length: this.gap,
-        id: `${ind}-gap`,
+        id: `${ind}-gap-${section.id}`,
         offset,
         icon: null,
       };

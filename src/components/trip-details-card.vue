@@ -10,11 +10,11 @@
       </div>
 
       <div class="caption">{{caption}}</div>
-      <div class="reasons" v-for="(p, index) in positiveThings" :key="'positive' + index">
+      <div class="reasons" v-for="p in positiveThings" :key="p">
         <IconCheck class="icon icon-positive"/>
         {{p}}
       </div>
-      <div class="reasons" v-for="(n, index) in negativeThings" :key="'negative' + index">
+      <div class="reasons" v-for="n in negativeThings" :key="n">
         <IconCross class="icon icon-negative"/>
         {{n}}
       </div>
