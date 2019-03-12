@@ -77,17 +77,24 @@ export default class TripOptionDetailsComponent extends Vue {
       return this.internalSections;
     }
     const maxWidth = this.$refs.container.offsetWidth;
+    const minWidth = this.$refs.container.offsetHeight;
     const hash = this.sections.reduce((s: string, i: IDetailsSection) => {
       return `${s}${i.color}${i.length}`;
     }, '');
     if (this.internalHash === `${maxWidth}${hash}`) {
       return this.internalSections;
     }
-    const fullWidth = maxWidth;
+
+    const fullWidth = maxWidth - (this.sections.length - 1) * this.gap;
+    const availableSpace = fullWidth - this.sections.length * minWidth;
+
     this.internalHash = `${maxWidth}${hash}`;
     let offset = 0;
     this.internalSections = this.sections.reduce((result: IExDetailsSection[], i: IDetailsSection, ind: number) => {
-      const sectionLength = ((fullWidth - (this.sections.length - 1) * this.gap) * i.length) / 100;
+      let sectionLength = minWidth + (fullWidth * i.length) / 100;
+      if (availableSpace > 0) {
+        sectionLength = minWidth + (availableSpace * i.length) / 100;
+      }
       offset += sectionLength;
       const section: IExDetailsSection = {
         ...i,
