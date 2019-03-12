@@ -3,7 +3,13 @@
     <div class="section-label">Trip Options</div>
     <div class="list-wrapper">
       <div class="list-scroller">
-        <TripDetailsOptionCardComponent v-for="(card, index) in options" :key="index" :data="card"/>
+        <TripDetailsOptionCardComponent
+          class="option-card"
+          v-for="card in options"
+          @click="onCardClick(card.id)"
+          :key="card.id"
+          :data="card"
+        />
       </div>
     </div>
   </div>
@@ -35,6 +41,11 @@ export default class TripOptionDetailsListComponent extends Vue {
   private get options(): ITripOption[] {
     return this.data || [];
   }
+
+  @Emit('onSelectCard')
+  private onCardClick(id: string) {
+    return id;
+  }
 }
 </script>
 
@@ -55,5 +66,11 @@ export default class TripOptionDetailsListComponent extends Vue {
 
 .list-wrapper {
   overflow-y: auto;
+}
+
+.option-card {
+  &:hover {
+    background-color: var(--inactive-bg);
+  }
 }
 </style>

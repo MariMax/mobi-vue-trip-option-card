@@ -2,6 +2,7 @@
 import { IDetailsSection } from './details-section.interface';
 
 export interface ITripOption {
+  id: string;
   sections: IDetailsSection[];
   gapLength: number;
   gapColor: string;
