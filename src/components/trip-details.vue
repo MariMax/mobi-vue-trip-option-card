@@ -55,7 +55,7 @@ export default class TripOptionDetailsComponent extends Vue {
   public id!: string;
 
   private isReady: boolean = false;
-  private internalHash: number = 0;
+  private internalHash: string = '';
   private internalSections: IExDetailsSection[] = [];
 
   public mounted() {
@@ -77,11 +77,14 @@ export default class TripOptionDetailsComponent extends Vue {
       return this.internalSections;
     }
     const maxWidth = this.$refs.container.offsetWidth;
-    if (this.internalHash === maxWidth) {
+    const hash = this.sections.reduce((s: string, i: IDetailsSection) => {
+      return `${s}${i.color}${i.length}`;
+    }, '');
+    if (this.internalHash === `${maxWidth}${hash}`) {
       return this.internalSections;
     }
     const fullWidth = maxWidth;
-    this.internalHash = fullWidth;
+    this.internalHash = `${maxWidth}${hash}`;
     let offset = 0;
     this.internalSections = this.sections.reduce((result: IExDetailsSection[], i: IDetailsSection, ind: number) => {
       const sectionLength = ((fullWidth - (this.sections.length - 1) * this.gap) * i.length) / 100;

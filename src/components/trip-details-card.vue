@@ -127,7 +127,7 @@ export default class TripOptionDetailsCardComponent extends Vue {
 .caption {
   font-weight: bold;
   font-size: 1.1em;
-
+  color: var(--secondary);
 }
 
 .reasons {
