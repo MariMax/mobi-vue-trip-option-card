@@ -58,8 +58,8 @@ export default class SectionComponent extends Vue {
     // if (availableWidth >= 0 && availableWidth < icon.clientHeight) {
     //   icon.style.opacity = '0';
     // }
-    // const halfLabel = icon.clientWidth / 2;
-    // icon.style.transform = `translateX(${availableWidth / 2 - halfLabel}px)`;
+    const halfLabel = icon.clientWidth / 2;
+    icon.style.transform = `translateX(${availableWidth / 2 - halfLabel}px)`;
   }
 }
 </script>

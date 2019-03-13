@@ -109,6 +109,7 @@ export default class TripOptionDetailsCardComponent extends Vue {
 .horizontal-container {
   width: 100%;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .content {
