@@ -3,13 +3,9 @@
     <div class="section-label">Trip Options</div>
     <div class="list-wrapper">
       <div class="list-scroller">
-        <TripDetailsOptionCardComponent
-          class="option-card"
-          v-for="card in options"
-          @click="onCardClick(card.id)"
-          :key="card.id"
-          :data="card"
-        />
+        <div v-for="card in options" @click="onCardClick(card.id)" :key="card.id">
+          <TripDetailsOptionCardComponent class="option-card" :data="card"/>
+        </div>
       </div>
     </div>
   </div>
