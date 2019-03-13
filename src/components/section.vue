@@ -3,7 +3,7 @@
     class="section"
     :id="id"
     ref="container"
-    :style="{'flex-basis': width, 'min-width': minWidth, 'max-width': maxWidth}"
+    :style="{'flex-basis': width}"
   >
     <component :is="icon" class="icon" ref="icon"></component>
   </div>
@@ -27,12 +27,6 @@ export default class SectionComponent extends Vue {
 
   @Prop({default: '10%'})
   public width!: string;
-
-  @Prop({default: 'auto'})
-  public minWidth!: string;
-
-  @Prop({default: 'auto'})
-  public maxWidth!: string;
 
   @Prop({default: null})
   public icon!: VueConstructor<Vue>;
@@ -60,6 +54,7 @@ export default class SectionComponent extends Vue {
     this.$refs.container.style.backgroundColor = this.color;
 
     const icon = this.$refs.icon.$el as HTMLDivElement;
+    this.$refs.container.style.minWidth = `${icon.clientHeight}px`;
     if (availableWidth >= 0 && availableWidth < icon.clientHeight) {
       icon.style.opacity = '0';
     }
