@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="section"
-    :id="id"
-    ref="container"
-    :style="{'flex-basis': width}"
-  >
+  <div class="section" :id="id" ref="container" :style="{'flex-basis': width}">
     <component :is="icon" class="icon" ref="icon"></component>
   </div>
 </template>
@@ -50,16 +45,16 @@ export default class SectionComponent extends Vue {
       return;
     }
 
-    const availableWidth = this.$refs.container.offsetWidth;
-    this.$refs.container.style.backgroundColor = this.color;
-
     const icon = this.$refs.icon.$el as HTMLDivElement;
     this.$refs.container.style.minWidth = `${icon.clientWidth + 4}px`;
-    // if (availableWidth >= 0 && availableWidth < icon.clientHeight) {
-    //   icon.style.opacity = '0';
-    // }
-    const halfLabel = icon.clientWidth / 2;
-    icon.style.transform = `translateX(${availableWidth / 2 - halfLabel}px)`;
+
+    this.$nextTick(() => {
+      const availableWidth = this.$refs.container.offsetWidth;
+      this.$refs.container.style.backgroundColor = this.color;
+
+      const halfLabel = icon.clientWidth / 2;
+      icon.style.transform = `translateX(${availableWidth / 2 - halfLabel}px)`;
+    });
   }
 }
 </script>
