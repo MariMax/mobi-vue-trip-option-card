@@ -1,16 +1,14 @@
 <template>
   <div class="horizontal-container">
     <div ref="container" class="horizontal-container-inner">
-      <div v-for="section in detailsSections()" :key="section.id" class="section-wrapper">
-        <div :style="{'height': '100%'}">
-          <Section
-            class="section"
-            :width="section.length"
-            :color="section.color"
-            :icon="section.icon"
-          />
-        </div>
-      </div>
+      <Section
+        v-for="section in detailsSections()" :key="section.id"
+        class="section"
+        :color="section.color"
+        :icon="section.icon"
+        :minWidth="section.minWidth"
+        :width="section.length"
+      />
     </div>
   </div>
 </template>
@@ -22,11 +20,6 @@ import Section from './section.vue';
 import VueObject from 'vue';
 
 let uniqueId = 0;
-
-interface IExDetailsSection extends IDetailsSection {
-  id: string;
-  offset: number;
-}
 
 @Component({
   components: {
@@ -56,7 +49,7 @@ export default class TripOptionDetailsComponent extends Vue {
 
   private isReady: boolean = false;
   private internalHash: string = '';
-  private internalSections: IExDetailsSection[] = [];
+  private internalSections: IDetailsSection[] = [];
 
   public mounted() {
     this.isReady = true;
@@ -72,7 +65,7 @@ export default class TripOptionDetailsComponent extends Vue {
     this.$forceUpdate();
   }
 
-  private detailsSections(): IExDetailsSection[] {
+  private detailsSections(): IDetailsSection[] {
     if (!this.isReady) {
       return this.internalSections;
     }
@@ -85,34 +78,23 @@ export default class TripOptionDetailsComponent extends Vue {
       return this.internalSections;
     }
 
-    const fullWidth = maxWidth - (this.sections.length - 1) * this.gap;
-    const availableSpace = fullWidth - this.sections.length * minWidth;
-
     this.internalHash = `${maxWidth}${hash}`;
-    let offset = 0;
-    this.internalSections = this.sections.reduce((result: IExDetailsSection[], i: IDetailsSection, ind: number) => {
-      let sectionLength = minWidth + (fullWidth * i.length) / 100;
-      if (availableSpace > 0) {
-        sectionLength = minWidth + (availableSpace * i.length) / 100;
-      }
-      offset += sectionLength;
-      const section: IExDetailsSection = {
+    this.internalSections = this.sections.reduce((result: IDetailsSection[], i: IDetailsSection, ind: number) => {
+      const section: IDetailsSection = {
         ...i,
-        length: sectionLength,
-        id: `${ind}-${fullWidth}-${i.color}-${i.length}`,
-        offset: offset - sectionLength,
+        id: `${ind}-${i.color}-${i.length}`,
+        minWidth: `${minWidth}px`,
       };
-      const gap: IExDetailsSection = {
+      const gap: IDetailsSection = {
         color: this.gapColor,
-        length: this.gap,
+        length: `${this.gap}px`,
+        minWidth: `${this.gap}px`,
         id: `${ind}-gap-${section.id}`,
-        offset,
         icon: null,
       };
       result.push(section);
       if (ind !== this.sections.length - 1) {
         result.push(gap);
-        offset += this.gap;
       }
       return result;
     }, []);
@@ -137,17 +119,13 @@ export default class TripOptionDetailsComponent extends Vue {
 .horizontal-container-inner {
   position: relative;
   display: flex;
-  align-items: center;
-  display: flex;
   align-items: baseline;
-}
-
-.section-wrapper {
-  /* position: absolute; */
 }
 
 .section {
   font-size: 2em;
   position: relative;
+  flex-shrink: 1;
+  flex-grow: 1;
 }
 </style>

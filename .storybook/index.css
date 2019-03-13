@@ -75,3 +75,17 @@ body * {
 .btn:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
+
+
+.section-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+
+.section {
+  font-size: 2em;
+  flex-grow: 1;
+  flex-shrink: 1;
+}

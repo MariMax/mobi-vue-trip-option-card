@@ -9,17 +9,17 @@ const option = {
   sections: [
     {
       color: 'red',
-      length: 30,
+      length: '30%',
       icon: IconBike,
     },
     {
       color: 'blue',
-      length: 50,
+      length: '50%',
       icon: IconBike,
     },
     {
       color: 'yellow',
-      length: 20,
+      length: '20%',
       icon: IconBike,
     },
   ],
@@ -36,10 +36,12 @@ storiesOf('Section', module).add('demo', () => ({
   components: {SectionComponent, IconBike},
   template: `
     <div class="demo">
-      <SectionComponent label="test" color="red" :width="100" :icon="bike"/><!--
-      --><SectionComponent label="test long"  color="blue" :width="50" :icon="bike"/><!--
-      --><SectionComponent label="test long" :width="10" :icon="bike"/><!--
-      --><SectionComponent label="test"  color="black" :width="40" :icon="bike"/>
+      <div class="section-wrapper">
+      <SectionComponent class="section" label="test" color="red" width="100px" :icon="bike"/><!--
+      --><SectionComponent class="section" label="test long" color="blue" width="50px" :icon="bike"/><!--
+      --><SectionComponent class="section" label="test long" width="10px" :icon="bike"/><!--
+      --><SectionComponent class="section" label="test"  color="black" width="40px" :icon="bike"/>
+      </div>
     </div>
     `,
     data() {
@@ -61,17 +63,17 @@ storiesOf('Details', module).add('demo', () => ({
     return {
       sections: [{
         color: 'red',
-        length: 30,
+        length: '30%',
         icon: IconBike,
       },
       {
         color: 'blue',
-        length: 50,
+        length: '50%',
         icon: IconBike,
       },
       {
         color: 'yellow',
-        length: 20,
+        length: '20%',
         icon: IconBike,
       },
     ],

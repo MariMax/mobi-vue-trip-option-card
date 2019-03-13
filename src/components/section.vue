@@ -1,8 +1,6 @@
 <template>
-  <div class="section" ref="container">
-    <div class="trace" :id="id" ref="trace">
-      <component :is="icon" class="icon" ref="icon"></component>
-    </div>
+  <div class="section" :id="id" ref="container" :style="{'flex-basis': width}">
+    <component :is="icon" class="icon" ref="icon"></component>
   </div>
 </template>
 
@@ -16,15 +14,17 @@ let uniqueId = 0;
 export default class SectionComponent extends Vue {
   public $refs!: {
     container: HTMLDivElement;
-    trace: HTMLDivElement;
     icon: VueObject;
   };
 
   @Prop({default: 'gray'})
   public color!: string;
 
-  @Prop({default: 10})
-  public width!: number;
+  @Prop({default: '10%'})
+  public width!: string;
+
+  @Prop({default: '2em'})
+  public minWidth!: string;
 
   @Prop({default: null})
   public icon!: VueConstructor<Vue>;
@@ -44,21 +44,19 @@ export default class SectionComponent extends Vue {
   }
 
   private updateLabel(): void {
-    const availableWidth = this.width;
-    this.$refs.trace.style.width = `${this.width}px`;
-    this.$refs.trace.style.backgroundColor = this.color;
-    if (!this.$refs.icon) {
+    if (!this.$refs.icon || !this.$refs.container) {
       return;
     }
+
+    const availableWidth = this.$refs.container.offsetWidth;
+    this.$refs.container.style.backgroundColor = this.color;
+
     const icon = this.$refs.icon.$el as HTMLDivElement;
-    if (availableWidth >= 0 && availableWidth < icon.offsetWidth) {
+    if (availableWidth >= 0 && availableWidth < icon.clientHeight) {
       icon.style.opacity = '0';
     }
     const halfLabel = icon.clientWidth / 2;
-    icon.style.transform = `translateX(${(this.width / 2) - halfLabel}px)`;
-    if (this.width < halfLabel * 2) {
-      icon.style.opacity = '0';
-    }
+    icon.style.transform = `translateX(${(availableWidth / 2) - halfLabel}px)`;
   }
 }
 </script>
@@ -68,11 +66,8 @@ export default class SectionComponent extends Vue {
   display: inline-block;
   text-align: center;
   position: relative;
-}
-
-.trace {
-  display: inline-block;
   height: 1em;
+
 }
 
 .icon {
