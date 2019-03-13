@@ -54,12 +54,12 @@ export default class SectionComponent extends Vue {
     this.$refs.container.style.backgroundColor = this.color;
 
     const icon = this.$refs.icon.$el as HTMLDivElement;
-    this.$refs.container.style.minWidth = `${icon.clientHeight}px`;
-    if (availableWidth >= 0 && availableWidth < icon.clientHeight) {
-      icon.style.opacity = '0';
-    }
-    const halfLabel = icon.clientWidth / 2;
-    icon.style.transform = `translateX(${availableWidth / 2 - halfLabel}px)`;
+    this.$refs.container.style.minWidth = `${icon.clientWidth + 4}px`;
+    // if (availableWidth >= 0 && availableWidth < icon.clientHeight) {
+    //   icon.style.opacity = '0';
+    // }
+    // const halfLabel = icon.clientWidth / 2;
+    // icon.style.transform = `translateX(${availableWidth / 2 - halfLabel}px)`;
   }
 }
 </script>
