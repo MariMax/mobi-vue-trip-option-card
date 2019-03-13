@@ -7,6 +7,7 @@
         :color="section.color"
         :icon="section.icon"
         :minWidth="section.minWidth"
+        :maxWidth="section.maxWidth"
         :width="section.length"
       />
     </div>
@@ -89,6 +90,7 @@ export default class TripOptionDetailsComponent extends Vue {
         color: this.gapColor,
         length: `${this.gap}px`,
         minWidth: `${this.gap}px`,
+        maxWidth: 'auto',
         id: `${ind}-gap-${section.id}`,
         icon: null,
       };

@@ -1,12 +1,17 @@
 <template>
-  <div class="section" :id="id" ref="container" :style="{'flex-basis': width}">
+  <div
+    class="section"
+    :id="id"
+    ref="container"
+    :style="{'flex-basis': width, 'min-width': minWidth, 'max-width': maxWidth}"
+  >
     <component :is="icon" class="icon" ref="icon"></component>
   </div>
 </template>
 
 <script lang="ts">
 import {Component, Prop, Vue, Emit} from 'vue-property-decorator';
-import VueObject, { VueConstructor } from 'vue';
+import VueObject, {VueConstructor} from 'vue';
 
 let uniqueId = 0;
 
@@ -23,8 +28,11 @@ export default class SectionComponent extends Vue {
   @Prop({default: '10%'})
   public width!: string;
 
-  @Prop({default: '2em'})
+  @Prop({default: 'auto'})
   public minWidth!: string;
+
+  @Prop({default: 'auto'})
+  public maxWidth!: string;
 
   @Prop({default: null})
   public icon!: VueConstructor<Vue>;
@@ -56,7 +64,7 @@ export default class SectionComponent extends Vue {
       icon.style.opacity = '0';
     }
     const halfLabel = icon.clientWidth / 2;
-    icon.style.transform = `translateX(${(availableWidth / 2) - halfLabel}px)`;
+    icon.style.transform = `translateX(${availableWidth / 2 - halfLabel}px)`;
   }
 }
 </script>
@@ -67,18 +75,17 @@ export default class SectionComponent extends Vue {
   text-align: center;
   position: relative;
   height: 1em;
-
 }
 
 .icon {
   display: block;
   text-align: center;
   color: var(--white);
-  font-size: .75em;
+  font-size: 0.75em;
   position: absolute;
   will-change: transform;
   left: 0;
-  top: .2em;
-  margin-bottom: 0
+  top: 0.2em;
+  margin-bottom: 0;
 }
 </style>
