@@ -55,7 +55,7 @@ export default class SectionComponent extends Vue {
 <style lang="postcss" scoped>
 .section {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   height: 1em;
 }
@@ -64,7 +64,5 @@ export default class SectionComponent extends Vue {
   display: block;
   color: var(--white);
   font-size: 0.75em;
-  max-height: 100%;
-  /* max-width: 100%; */
 }
 </style>
