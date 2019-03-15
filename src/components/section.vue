@@ -65,6 +65,6 @@ export default class SectionComponent extends Vue {
   color: var(--white);
   font-size: 0.75em;
   max-height: 100%;
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 </style>
