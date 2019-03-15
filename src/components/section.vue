@@ -69,7 +69,5 @@ export default class SectionComponent extends Vue {
   font-size: 0.75em;
   top: 50%;
   transform: translateY(-50%);
-  max-height: .5em;
-  max-width: .5em;
 }
 </style>
