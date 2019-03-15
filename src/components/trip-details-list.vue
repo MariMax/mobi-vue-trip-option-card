@@ -4,7 +4,7 @@
     <div class="list-wrapper">
       <div class="list-scroller">
         <div v-for="card in options" @click="onCardClick(card.id)" :key="card.id">
-          <TripDetailsOptionCardComponent class="option-card" :data="card"/>
+          <TripDetailsOptionCardComponent class="option-card" :data="card" :arriveText="card.arriveText"/>
         </div>
       </div>
     </div>

@@ -11,4 +11,5 @@ export interface ITripOption {
   caption: string;
   positives: string[];
   negatives: string[];
+  arriveText?: string;
 }
