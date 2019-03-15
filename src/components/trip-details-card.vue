@@ -5,7 +5,7 @@
       <div class="arrival-departure">
         <span class="label">Depart </span>
         <span class="value">{{departureTime}}, </span>
-        <span class="label">Arrive </span>
+        <span class="label">{{arriveText}} </span>
         <span class="value">{{arrivalTime}}</span>
       </div>
 
@@ -41,6 +41,8 @@ let uniqueId = 0;
 export default class TripOptionDetailsCardComponent extends Vue {
   @Prop({default: null, required: true})
   public data!: ITripOption | null;
+  @Prop({default: 'Arrive'})
+  public arriveText!: string;
 
   @Prop({
     default() {
@@ -114,6 +116,7 @@ export default class TripOptionDetailsCardComponent extends Vue {
 
 .content {
   margin: .5em 1em;
+  padding-bottom: 1em;
 }
 
 .label, .value {

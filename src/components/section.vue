@@ -47,35 +47,22 @@ export default class SectionComponent extends Vue {
 
     const icon = this.$refs.icon.$el as HTMLDivElement;
     this.$refs.container.style.minWidth = `${icon.clientWidth + 4}px`;
-
-    this.$nextTick(() => {
-      const availableWidth = this.$refs.container.offsetWidth;
-      this.$refs.container.style.backgroundColor = this.color;
-
-      const halfLabel = icon.clientWidth / 2;
-      icon.style.transform = `translateX(${availableWidth / 2 - halfLabel}px)`;
-    });
+    this.$refs.container.style.backgroundColor = this.color;
   }
 }
 </script>
 
 <style lang="postcss" scoped>
 .section {
-  display: inline-block;
-  text-align: center;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 1em;
 }
 
 .icon {
   display: block;
-  text-align: center;
   color: var(--white);
   font-size: 0.75em;
-  position: absolute;
-  will-change: transform;
-  left: 0;
-  top: 0.2em;
-  margin-bottom: 0;
 }
 </style>
