@@ -55,14 +55,18 @@ export default class SectionComponent extends Vue {
 <style lang="postcss" scoped>
 .section {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   height: 1em;
 }
 
 .icon {
+  position: absolute;
   display: block;
   color: var(--white);
-  font-size: 0.75em;
+  font-size: .75em;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: 100%;
 }
 </style>
