@@ -46,8 +46,10 @@ export default class SectionComponent extends Vue {
     }
 
     const icon = this.$refs.icon.$el as HTMLDivElement;
-    this.$refs.container.style.minWidth = `${icon.clientWidth + 4}px`;
     this.$refs.container.style.backgroundColor = this.color;
+    this.$nextTick(() => {
+      this.$refs.container.style.minWidth = `${icon.clientWidth + 4}px`;
+    });
   }
 }
 </script>
@@ -64,7 +66,7 @@ export default class SectionComponent extends Vue {
   position: absolute;
   display: block;
   color: var(--white);
-  font-size: .75em;
+  font-size: 0.75em;
   top: 50%;
   transform: translateY(-50%);
   max-height: 100%;
