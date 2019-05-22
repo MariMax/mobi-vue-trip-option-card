@@ -1,30 +1,21 @@
 <template>
   <div class="horizontal-container">
     <TripOptionDetailsComponent :sections="tripSections" :gap="gapLength" :gapColor="gapColor"/>
-    <section class="content">
-      <div class="arrival-departure">
-        <span class="label">Depart </span>
-        <span class="value">{{departureTime}}, </span>
-        <span class="label">{{arriveText}} </span>
-        <span class="value">{{arrivalTime}}</span>
-      </div>
-
-      <div class="caption">{{caption}}</div>
-      <div class="reasons" v-for="p in positiveThings" :key="p">
-        <IconCheck class="icon icon-positive"/>
-        {{p}}
-      </div>
-      <div class="reasons" v-for="n in negativeThings" :key="n">
-        <IconCross class="icon icon-negative"/>
-        {{n}}
-      </div>
-    </section>
+    <TripDetailsSectionComponent
+      :arriveText="arriveText"
+      :departureTime="departureTime"
+      :arrivalTime="arrivalTime"
+      :caption="caption"
+      :positiveThings="positiveThings"
+      :negativeThings="negativeThings"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import {Component, Prop, Vue, Emit} from 'vue-property-decorator';
 import TripOptionDetailsComponent from './trip-details.vue';
+import TripDetailsSectionComponent from './trip-details-section.vue';
 import {ITripOption} from '../types/trip-option.interface';
 import {IDetailsSection} from '../types/details-section.interface';
 import {IconCross, IconCheck} from 'mobi-vue-icons';
@@ -34,6 +25,7 @@ let uniqueId = 0;
 @Component({
   components: {
     TripOptionDetailsComponent,
+    TripDetailsSectionComponent,
     IconCross,
     IconCheck,
   },
@@ -113,42 +105,4 @@ export default class TripOptionDetailsCardComponent extends Vue {
   overflow: hidden;
   cursor: pointer;
 }
-
-.content {
-  margin: .5em 1em;
-  padding-bottom: 1em;
-}
-
-.label, .value {
-  color: var(--black-50);
-  font-size: .7em;
-}
-
-.value {
-  font-weight: bold;
-}
-
-.caption {
-  font-weight: bold;
-  font-size: 1.1em;
-  color: var(--secondary);
-}
-
-.reasons {
-  display: flex;
-  align-items: center;
-  font-size: .7em;
-}
-
-.icon {
-  margin-right: .5em;
-
-  &-positive {
-    color: var(--positive, green);
-  }
-  &-negative {
-    color: var(--positive, red);
-  }
-}
-
 </style>
