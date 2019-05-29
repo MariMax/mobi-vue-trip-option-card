@@ -1,9 +1,9 @@
 <template>
   <section class="content">
     <div class="arrival-departure">
-      <span class="label">Depart&nbsp;</span>
-      <span class="value">{{departureTime}},</span>
-      <span class="label">{{arriveText}}&nbsp;</span>
+      <span class="label" v-show="departureTime">Depart&nbsp;</span>
+      <span class="value" v-show="departureTime">{{departureTime}},</span>
+      <span class="label" v-show="arrivalTime">{{arriveText}}&nbsp;</span>
       <span class="value">{{arrivalTime}}</span>
     </div>
 
